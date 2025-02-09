@@ -1,7 +1,3 @@
-공유하기
-
-
-나의 말:
 import pygame
 import cv2
 import numpy as np
