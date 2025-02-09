@@ -2,106 +2,17 @@
 <html>
 <head>
     <title>아트랩 음성 인식 갤러리</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            width: 800px;
-            height: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-        #logo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 200px;
-        }
-        .scrolling-text {
-            position: absolute;
-            top: 50%;
-            white-space: nowrap;
-            animation: scroll 15s linear infinite;
-        }
-        @keyframes scroll {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
-        }
-        .hint {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            color: #666;
-        }
-        #content {
-            position: relative;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #artist-video, #artist-image {
-            max-width: 100%;
-            max-height: 80vh;
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2024.1.1/pyscript.js"></script>
+    <py-config>
+        packages = ["pygame", "opencv-python", "SpeechRecognition", "pyaudio"]
+        [[fetch]]
+        files = ["test7.py"]
+    </py-config>
 </head>
 <body>
-    <div class="container">
-        <img id="logo" src="images/HyundaiArtlab.png" alt="현대 아트랩 로고">
-        <div id="content">
-            <div class="scrolling-text">안녕하세요^^ 아트랩입니다</div>
-            <video id="artist-video" controls></video>
-            <img id="artist-image">
-        </div>
-        <div class="hint">작가의 이름을 말씀해주세요 :)</div>
-    </div>
-
-    <script>
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'ko-KR';
-        recognition.continuous = true;
-
-        const artistContent = {
-            "정연두": {
-                type: "video",
-                src: "videos/MMCA.mp4",
-                text: "정연두 작가의 작품입니다"
-            },
-            "김지원": {
-                type: "image",
-                src: "images/지원.jpg",
-                text: "김지원 작가 / 3층 / 맛있는 식사에 대하여"
-            }
-        };
-
-        recognition.onresult = function(event) {
-            const result = event.results[event.results.length - 1][0].transcript;
-            const video = document.getElementById('artist-video');
-            const image = document.getElementById('artist-image');
-            const scrollText = document.querySelector('.scrolling-text');
-            
-            if (artistContent[result]) {
-                const content = artistContent[result];
-                scrollText.style.display = 'none';
-                
-                if (content.type === "video") {
-                    video.src = content.src;
-                    video.style.display = "block";
-                    image.style.display = "none";
-                    video.play();
-                } else {
-                    image.src = content.src;
-                    image.style.display = "block";
-                    video.style.display = "none";
-                }
-            }
-        };
-
-        recognition.start();
-    </script>
+    <div id="output"></div>
+    <py-script src="test7.py">
+    </py-script>
 </body>
 </html>
