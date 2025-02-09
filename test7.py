@@ -6,10 +6,10 @@ import threading
 import os
 import time
 
-# 파일 경로 설정
-BACKGROUND_IMAGE_PATH = r"C:\Users\TMS\Downloads\HyundaiArtlab.png"
-VIDEO_PATH_JUNG = r"C:\Users\TMS\Downloads\MMCA.mp4"
-IMAGE_PATH_KIM = r"C:\Users\TMS\Downloads\지원.jpg"
+// 웹용 상대 경로로 변경
+BACKGROUND_IMAGE_PATH = "images/HyundaiArtlab.png"
+VIDEO_PATH_JUNG = "videos/MMCA.mp4"
+IMAGE_PATH_KIM = "images/지원.jpg"
 
 # 단어별 미디어 및 문구 설정
 WORDS_TO_TRIGGER = {
